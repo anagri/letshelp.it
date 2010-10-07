@@ -1,57 +1,63 @@
 <% form_for(@organization) do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
 
+<div class="orgInfo">
+  <h4><%=t("org_info")%></h4>
   <p>
-    <%= f.label t("org_form.name") %><br />
+    <%= f.label t("org_form.name") %>
     <%= f.text_field :name %>
   </p>
   
   <p>
-    <%= f.label t("org_form.contact") %><span class="smooth_text"> (<%=t("contact_info")%>)</span><br />
+    <label><%= t("org_form.contact") %><span class="smoothText">(<%=t("contact_info")%>)</span></label
     <%= f.text_field :contact %>
   </p>
   <p>
-    <%= f.label t("org_form.city") %><br />
+    <%= f.label t("org_form.city") %>
     <%= f.text_field :city %>
   </p>
   <p>
-    <%= f.label t("org_form.country") %><br />
+    <%= f.label t("org_form.country") %>
     <%= f.text_field :country %>
   </p>
-
-
+  
+  
   <p>
-    <%= f.label t("org_form.tags") %><br />
+    <%= f.label t("org_form.tags") %>
     <blockquote id="list_tags"> 
-      <% @tags.each do |tag| -%>
-        <label><input type="checkbox" value="<%=tag.id%>" name="organization[tag_ids][]" <%= @organization.tags.include?(tag) ? "checked=\"checked\"" : "" %>/> <%= t("tag.#{tag.name}") %></label><br />
-      <% end -%>
+    <% @tags.each do |tag| -%>
+    <label><input type="checkbox" value="<%=tag.id%>" name="organization[tag_ids][]" <%= @organization.tags.include?(tag) ? "checked=\"checked\"" : "" %>/> <%= t("tag.#{tag.name}") %></label>
+    <% end -%>
+    <div class="clear"></div>
     </blockquote>
   </p>
-
-  <p>
-    <%= f.label t("org_form.needs") %><br />
+  
+  <p class="textarea">
+    <%= f.label t("org_form.needs") %>
     <%= f.text_area :needs %>
   </p>
-  
-  <div id="announcer_infos">
-  	<p><%=t("announcer_info")%></p>
-		<p>
-		  <%= f.label t("org_form.announcer") %><br />
-		  <%= f.text_field :announcer %>
-		</p>
-	  <p>
-		  <%= f.label t("org_form.password") %><br />
-		  <%= f.password_field :password %>
-		</p>
-		<p>
-		  <%= f.label t("org_form.email") %><br />
-		  <%= f.text_field :email %>
-		</p>
-  </div>
-  
-  <p>
-    <%= f.submit action , :value => controller.action_name == "new" ? t("org_form.create_button") : t("org_form.update_button")%>
-  </p>
+</div>
 
+<div class="announcerInfo">
+  <div id="announcer_infos">
+    <h4><%=t("announcer_info")%></h4>
+    <p>
+      <%= f.label t("org_form.announcer") %>
+      <%= f.text_field :announcer %>
+    </p>
+    <p>
+      <%= f.label t("org_form.password") %>
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label t("org_form.email") %>
+      <%= f.text_field :email %>
+    </p>
+  </div>
+  <div class="btnSubmit">
+    <%= f.submit action , :value => controller.action_name == "new" ? t("org_form.create_button") : t("org_form.update_button")%>
+  </div>
+</div>
+
+<div class="clear"></div>
 <% end %>
